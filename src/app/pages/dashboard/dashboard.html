@@ -1,9 +1,14 @@
-<p>TODO list</p>
+<div class="dashboard-container">
 
-<p> - Estilizar o Header </p>
-<p> - Criar o cadastro de Tickers</p>
-<p>       - descricao, acao (CPL4) </p>
+  <div *ngIf="dados.length > 0; else semDados" class="cards">
+    <div class="card" *ngFor="let acao of dados">
+      <h3>{{ acao.ticker }}</h3>
+      <p>{{ acao.empresa }}</p>
+      <strong>R$ {{ acao.preco | number: '1.2-2' }}</strong>
+    </div>
+  </div>
 
-<p> - Criar o cadastro de Configuração</p>
-<p>       - tempo p/ atualização (com quanto tempo o preço atualiza) </p>
-<p>       - ações exibidas (quais ações do cadastro vai exibir no dashboard)</p>
+  <ng-template #semDados>
+    <p class="text-muted">Nenhuma ação configurada.</p>
+  </ng-template>
+</div>
